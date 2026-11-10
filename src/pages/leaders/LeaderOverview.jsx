@@ -1,5 +1,5 @@
 import { useOutletContext } from 'react-router'
-import { Crosshair, Gauge, Map as MapIcon, Plane, Shield, Truck, TrendingUp, Users, Zap } from 'lucide-react'
+import { UserGroup, Gauge, Map as MapIcon, Plane, Shield, Truck, TrendingUp, Users, Zap } from 'lucide-react'
 import { useReferenceData } from '../../api/ReferenceDataContext.jsx'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import { Bar, Card, Empty, Ring, Soon } from '../../components/ui.jsx'
@@ -20,7 +20,7 @@ export default function LeaderOverview() {
     { key: 'worstVs', icon: Shield },
   ]
   const units = [
-    { key: 'antiInfantry', icon: Crosshair },
+    { key: 'antiInfantry', icon: UserGroup },
     { key: 'antiVehicle', icon: Truck },
     { key: 'antiAir', icon: Plane },
   ]

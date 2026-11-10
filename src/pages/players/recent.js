@@ -1,5 +1,8 @@
 const KEY = 'archivist.recentPlayers'
 
+/** Mismas reglas que el backend: letras, números y espacios, 1 a 16 caracteres. */
+export const GAMERTAG_RE = /^[\p{L}\p{N} ]{1,16}$/u
+
 /** Últimos gamertags buscados en este navegador (solo comodidad; puede no estar disponible). */
 export function readRecent() {
   try {

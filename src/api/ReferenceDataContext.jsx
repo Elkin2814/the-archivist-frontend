@@ -13,6 +13,7 @@ export function ReferenceDataProvider({ children }) {
   const { lang } = useI18n()
   const leaders = useApi((opts) => api.leaders(lang, opts), [lang])
   const maps = useApi((opts) => api.maps(opts), [])
+  const playlists = useApi((opts) => api.playlists(opts), [])
   const csr = useApi((opts) => api.csrDesignations(opts), [])
 
   const value = useMemo(() => {
@@ -20,6 +21,7 @@ export function ReferenceDataProvider({ children }) {
     const byApiId = new Map(leaderList.filter((l) => l.apiId != null).map((l) => [l.apiId, l]))
     const byKey = new Map(leaderList.map((l) => [l.key, l]))
     const mapsById = new Map((maps.data ?? []).map((m) => [m.id, m]))
+    const playlistsById = new Map((playlists.data ?? []).map((p) => [p.id, p]))
     const csrById = new Map((csr.data ?? []).map((d) => [d.id, d]))
     return {
       leaders: leaderList,
@@ -29,10 +31,12 @@ export function ReferenceDataProvider({ children }) {
       leaderByKey: (key) => byKey.get(key),
       maps: maps.data ?? [],
       mapName: (id) => mapsById.get(id)?.name,
+      playlists: playlists.data ?? [],
+      playlistName: (id) => playlistsById.get(id)?.name,
       csrDesignations: csr.data ?? [],
       csrName: (id) => csrById.get(id)?.name,
     }
-  }, [leaders, maps, csr])
+  }, [leaders, maps, playlists, csr])
 
   return <ReferenceDataContext.Provider value={value}>{children}</ReferenceDataContext.Provider>
 }

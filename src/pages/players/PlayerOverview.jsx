@@ -7,7 +7,7 @@ import { Bar, Card, Empty, Ring, Skeleton } from '../../components/ui.jsx'
 
 export default function PlayerOverview() {
   const { t } = useI18n()
-  const { summary } = useOutletContext()
+  const { summary, refreshing, playlistId } = useOutletContext()
   const { leaderByKey } = useReferenceData()
   const data = summary.data
 
@@ -22,11 +22,15 @@ export default function PlayerOverview() {
 
   const o = data.overall
   if (o.matches === 0) {
-    return <Empty center title={t('players.overview.emptyTitle')}>{t('players.overview.emptyBody')}</Empty>
+    return playlistId ? (
+      <Empty center title={t('players.overview.emptyModeTitle')}>{t('players.overview.emptyModeBody')}</Empty>
+    ) : (
+      <Empty center title={t('players.overview.emptyTitle')}>{t('players.overview.emptyBody')}</Empty>
+    )
   }
 
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24, opacity: refreshing ? 0.5 : 1, transition: 'opacity .2s' }}>
       <div className="grid grid--main">
         <Card eyebrow={t('players.overview.matchmaking')} title={t('players.overview.record')} icon={Activity}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 28, flexWrap: 'wrap' }}>
@@ -97,6 +101,6 @@ export default function PlayerOverview() {
           </div>
         </Card>
       </div>
-    </>
+    </div>
   )
 }

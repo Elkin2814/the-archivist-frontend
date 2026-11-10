@@ -48,8 +48,12 @@ export const api = {
   playlists: (opts) => request('/metadata/playlists', opts),
   seasons: (opts) => request('/metadata/seasons', opts),
   csrDesignations: (opts) => request('/metadata/csr-designations', opts),
-  playerSummary: (gamertag, lang, opts) =>
-    request(`/players/${tag(gamertag)}/summary?lang=${lang}`, opts),
-  playerHistory: (gamertag, page, size, opts) =>
-    request(`/players/${tag(gamertag)}/history?page=${page}&size=${size}`, opts),
+  // playlistId (opcional): limita el resultado a un modo de juego (cola) concreto.
+  playerSummary: (gamertag, lang, playlistId, opts) =>
+    request(`/players/${tag(gamertag)}/summary?lang=${lang}${playlistId ? `&playlistId=${playlistId}` : ''}`, opts),
+  playerHistory: (gamertag, page, size, playlistId, opts) =>
+    request(
+      `/players/${tag(gamertag)}/history?page=${page}&size=${size}${playlistId ? `&playlistId=${playlistId}` : ''}`,
+      opts,
+    ),
 }

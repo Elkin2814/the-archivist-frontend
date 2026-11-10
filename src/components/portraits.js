@@ -32,12 +32,27 @@ export const PORTRAIT_URL = {
  */
 export const DEFAULT_FOCUS = { x: 50, y: 8, zoom: 220 }
 
-/** Para imágenes ya recortadas (casi cuadradas): solo se ajustan al círculo. */
+/** Para imágenes ya recortadas solo se ajustan al círculo. */
 export const CROPPED_FOCUS = { x: 50, y: 0, zoom: 125 }
 
-/** Solo para Cutter, que es de cuerpo entero y necesita su propio centrado. */
+/** Focus y tamaño personalizado. */
 export const PORTRAIT_FOCUS = {
   CUTTER: { x: 44, y: 9, zoom: 220 },
+  ISABEL: { x: 44, y: 9, zoom: 220 },
+  ANDERS: { x: 44, y: 9, zoom: 220 },
+  FORGE: { x: 44, y: 9, zoom: 220 },
+  KINSANO: { x: 44, y: 9, zoom: 220 },
+  JOHNSON: { x: 44, y: 7, zoom: 200 },
+  SERINA: { x: 48, y: 9, zoom: 220 },
+  JEROME: { x: 44, y: 9, zoom: 200 },
+
+  COLONY: { x: 44, y: 1, zoom: 150 },
+  DECIMUS: { x: 44, y: 9, zoom: 220 },
+  SHIPMASTER: { x: 44, y: 4, zoom: 180 },
+  ARBITER: { x: 50, y: 4, zoom: 180 },
+  YAPYAP: { x: 44, y: 4, zoom: 180 },
+  VORIDUS: { x: 44, y: 4, zoom: 180 },
+  PAVIUM: { x: 44, y: 4, zoom: 180 },
 }
 
 /**

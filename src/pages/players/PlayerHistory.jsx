@@ -13,10 +13,14 @@ const PAGE_SIZE = 20
 
 export default function PlayerHistory() {
   const { t, lang } = useI18n()
-  const { gamertag } = useOutletContext()
+  const { gamertag, playlistId } = useOutletContext()
   const { leaderByApiId, mapName, csrName } = useReferenceData()
-  const [page, setPage] = useState(0)
-  const history = useApi((opts) => api.playerHistory(gamertag, page, PAGE_SIZE, opts), [gamertag, page])
+  // La página vale solo para el jugador y el modo con los que se eligió; al cambiarlos se vuelve a la primera.
+  const scope = `${gamertag.toLowerCase()}|${playlistId ?? ''}`
+  const [pageState, setPageState] = useState({ scope, page: 0 })
+  const page = pageState.scope === scope ? pageState.page : 0
+  const setPage = (update) => setPageState({ scope, page: typeof update === 'function' ? update(page) : update })
+  const history = useApi((opts) => api.playerHistory(gamertag, page, PAGE_SIZE, playlistId, opts), [gamertag, page, playlistId])
 
   if (history.error) return <ApiErrorAlert error={history.error} />
 

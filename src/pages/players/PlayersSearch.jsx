@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router'
 import { Clock, Search, Trophy, History, Swords } from 'lucide-react'
 import { useI18n } from '../../i18n/I18nContext.jsx'
 import { Card } from '../../components/ui.jsx'
-import { pushRecent, readRecent } from './recent.js'
-
-/** Mismas reglas que el backend: letras, números y espacios, 1 a 16 caracteres. */
-const GAMERTAG = /^[\p{L}\p{N} ]{1,16}$/u
+import { GAMERTAG_RE as GAMERTAG, pushRecent, readRecent } from './recent.js'
 
 export default function PlayersSearch() {
   const { t } = useI18n()
